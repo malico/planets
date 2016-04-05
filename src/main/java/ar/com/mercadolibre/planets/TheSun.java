@@ -2,8 +2,9 @@ package ar.com.mercadolibre.planets;
 
 import java.math.BigDecimal;
 
-//TODO: Make it singleton
 public class TheSun extends Planet {
+	
+	private static TheSun instance = new TheSun();
 
 	@Override
 	public BigDecimal getDistanceToSun() {
@@ -14,5 +15,11 @@ public class TheSun extends Planet {
 	public BigDecimal getTranslationSpeed() {
 		return BigDecimal.ZERO;
 	}
+	
+	public static TheSun getInstance() {
+		return instance;
+	}
+	
+	private TheSun() {}
 
 }
