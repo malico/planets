@@ -3,10 +3,27 @@ package ar.com.mercadolibre.planets;
 import java.math.BigDecimal;
 
 public abstract class Planet {
+	
+	private BigDecimal x;
+	
+	private BigDecimal y;
 
 	public abstract BigDecimal getDistanceToSun();
 
 	public abstract BigDecimal getTranslationSpeed();
+	
+	public Planet() {
+		x = BigDecimal.ZERO;
+		y = getDistanceToSun();
+	}
+	
+	public BigDecimal getX() {
+		return x;
+	}
+	
+	public BigDecimal getY() {
+		return y;
+	}
 
 	public double getXPositionForDay(long aDay) {
 		long relativeDegrees = aDay % 360;
