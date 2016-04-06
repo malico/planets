@@ -1,7 +1,15 @@
-package ar.com.mercadolibre.planets;
+package ar.com.mercadolibre.planets.service;
 
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import ar.com.mercadolibre.planets.domain.Planet;
+import ar.com.mercadolibre.planets.domain.TheSun;
+ 
+@Service("forecastService")
+@Transactional
 public class ForecastService {
 
 	public enum Weather {

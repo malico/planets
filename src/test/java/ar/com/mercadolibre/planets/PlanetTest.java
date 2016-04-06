@@ -6,6 +6,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import ar.com.mercadolibre.planets.domain.Ferengi;
+import ar.com.mercadolibre.planets.domain.Planet;
+
 public class PlanetTest {
 
 	private static final double DELTA = 1e-7;

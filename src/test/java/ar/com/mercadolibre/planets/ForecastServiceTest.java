@@ -6,7 +6,9 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
-import ar.com.mercadolibre.planets.ForecastService.Weather;
+import ar.com.mercadolibre.planets.domain.Planet;
+import ar.com.mercadolibre.planets.service.ForecastService;
+import ar.com.mercadolibre.planets.service.ForecastService.Weather;
 
 public class ForecastServiceTest {
 	

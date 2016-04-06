@@ -1,4 +1,4 @@
-package ar.com.mercadolibre.planets;
+package ar.com.mercadolibre.planets.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

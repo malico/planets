@@ -1,7 +1,9 @@
-package ar.com.mercadolibre.planets;
+package ar.com.mercadolibre.planets.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import ar.com.mercadolibre.planets.service.MathUtils;
 
 public abstract class Planet {
 
