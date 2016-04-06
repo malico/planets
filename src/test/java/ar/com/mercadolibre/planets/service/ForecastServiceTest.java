@@ -46,7 +46,7 @@ public class ForecastServiceTest {
 		Weather forecast = new ForecastService().forecast(p1, p2, p3);
 		assertEquals(Weather.OPTIMAL, forecast);
 	}
-
+	
 	class DummyPlanet extends Planet {
 		
 		private BigDecimal dummyX;

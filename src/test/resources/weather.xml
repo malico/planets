@@ -8,7 +8,7 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/>
+           distance="15.986875"/>
     <weather_registries id="2"
            day="2"
            ferengi_x="25"
@@ -18,7 +18,7 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/>
+           distance="33.986875"/>
     <weather_registries id="3"
            day="3"
            ferengi_x="25"
@@ -28,7 +28,7 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/> 
+           distance="1.986875"/> 
     <weather_registries id="4"
            day="4"
            ferengi_x="25"
@@ -38,7 +38,7 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/> 
+           distance="65.986875"/> 
     <weather_registries id="5"
            day="5"
            ferengi_x="25"

@@ -44,7 +44,17 @@ public class MathUtils {
 		BigDecimal sideA = distance(x1, y1, x2, y2);
 		BigDecimal sideB = distance(x1, y1, x3, y3);
 		BigDecimal sideC = distance(x2, y2, x3, y3);
-		return sideA.add(sideB).add(sideC);
+		BigDecimal perimeter = sideA.add(sideB).add(sideC);
+		
+		BigDecimal semiPerimeter = perimeter.divide(new BigDecimal(2));
+		double area = Math.sqrt(semiPerimeter.doubleValue()
+				* (semiPerimeter.doubleValue() - sideA.doubleValue())
+				* (semiPerimeter.doubleValue() - sideB.doubleValue())
+				* (semiPerimeter.doubleValue() - sideC.doubleValue()));
+		if (area == 0) {
+			return BigDecimal.ZERO;
+		}
+		return perimeter;
 	}
 
 	public static BigDecimal distance(BigDecimal x1, BigDecimal y1,

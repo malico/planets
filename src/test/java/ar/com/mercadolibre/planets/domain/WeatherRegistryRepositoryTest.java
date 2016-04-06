@@ -65,11 +65,18 @@ public class WeatherRegistryRepositoryTest extends DatabaseTest {
 		assertEquals(2, sunnyDays);
 		assertEquals(0, optimalDays);
 	}
+	
+	@Test
+	public void getMaximumRainDay() {
+		// in InitialDB.xml the max rains day is number 4.
+		WeatherRegistry maxRainyDay = repository.getMaximumRainDay(1, 10);
+		assertEquals(4, maxRainyDay.getDay());
+	}
 
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		IDataSet dataSet = new FlatXmlDataSet(this.getClass().getClassLoader()
-				.getResourceAsStream("initialDB.xml"));
+				.getResourceAsStream("weather.xml"));
 		return dataSet;
 	}
 

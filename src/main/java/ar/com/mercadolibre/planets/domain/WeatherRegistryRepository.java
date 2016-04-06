@@ -33,12 +33,14 @@ public class WeatherRegistryRepository extends BaseRepository<WeatherRegistry, L
 		return (long) criteria.uniqueResult();
 	}
 
-	public long getMaximumRain(int fromDay, int toDay) {
+	public WeatherRegistry getMaximumRainDay(int fromDay, int toDay) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.ge("day", fromDay));
 		criteria.add(Restrictions.le("day", toDay));
 		criteria.add(Restrictions.eq("condition", Weather.RAIN));
-		criteria.setProjection(Projections.max("planetsDistance"));
-		return (long) criteria.uniqueResult();
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+	    criteria.addOrder(org.hibernate.criterion.Order.desc("planetsDistance"));
+	    criteria.setMaxResults(1);
+		return (WeatherRegistry) criteria.uniqueResult();
 	}
 }

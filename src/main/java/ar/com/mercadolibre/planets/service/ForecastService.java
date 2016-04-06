@@ -73,8 +73,8 @@ public class ForecastService {
 		long rainyDays = repository.getDaysWithCondition(Weather.RAIN, fromDay, toDay);
 		long droughtDays = repository.getDaysWithCondition(Weather.DROUGHT, fromDay, toDay);
 		long optimalDays = repository.getDaysWithCondition(Weather.OPTIMAL, fromDay, toDay);
-		long maximumRain = repository.getMaximumRain(fromDay, toDay);
-		return new ForecastSummary(clearDays, rainyDays, droughtDays, optimalDays, maximumRain);
+		WeatherRegistry maximumRainDay = repository.getMaximumRainDay(fromDay, toDay);
+		return new ForecastSummary(clearDays, rainyDays, droughtDays, optimalDays, maximumRainDay.getDay());
 	}
 	
 	private boolean willRain(Planet p1, Planet p2, Planet p3) {
