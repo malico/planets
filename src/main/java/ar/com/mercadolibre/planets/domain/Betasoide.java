@@ -8,6 +8,14 @@ private static BigDecimal DISTANCE = new BigDecimal(2000);
 	
 	private static BigDecimal SPEED = new BigDecimal(3);
 
+	public Betasoide() {
+		super();
+	}
+	
+	public Betasoide(long days) {
+		super(days);
+	}
+	
 	@Override
 	public BigDecimal getDistanceToSun() {
 		return DISTANCE;

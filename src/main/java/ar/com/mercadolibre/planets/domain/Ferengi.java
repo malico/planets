@@ -7,6 +7,14 @@ public class Ferengi extends Planet {
 	private static BigDecimal DISTANCE = new BigDecimal(500);
 	
 	private static BigDecimal SPEED = new BigDecimal(1);
+	
+	public Ferengi() {
+		super();
+	}
+	
+	public Ferengi(long days) {
+		super(days);
+	}
 
 	@Override
 	public BigDecimal getDistanceToSun() {

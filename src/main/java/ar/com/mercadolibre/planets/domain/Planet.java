@@ -19,6 +19,11 @@ public abstract class Planet {
 		x = BigDecimal.ZERO;
 		y = getDistanceToSun();
 	}
+	
+	public Planet(long days) {
+		this();
+		move(days);
+	}
 
 	public BigDecimal getX() {
 		return x;
@@ -27,9 +32,18 @@ public abstract class Planet {
 	public BigDecimal getY() {
 		return y;
 	}
+	
+	public void move(final long days) {
+		x = getXPositionForDay(days);
+		y = getYPositionForDay(days);
+	}
 
 	public BigDecimal getXPositionForDay(long aDay) {
-		long relativeDegrees = aDay % 360;
+		BigDecimal degrees = getTranslationSpeed().multiply(new BigDecimal(aDay));
+		long relativeDegrees = degrees.longValue() % 360;
+		if (degrees.compareTo(BigDecimal.ZERO) < 0) {
+			relativeDegrees = 360 - (degrees.abs().longValue() % 360);
+		}
 		double position;
 
 		if (relativeDegrees >= 0 && relativeDegrees <= 90) {
@@ -50,7 +64,11 @@ public abstract class Planet {
 	}
 
 	public BigDecimal getYPositionForDay(long aDay) {
-		long relativeDegrees = aDay % 360;
+		BigDecimal degrees = getTranslationSpeed().multiply(new BigDecimal(aDay));
+		long relativeDegrees = degrees.longValue() % 360;
+		if (degrees.compareTo(BigDecimal.ZERO) < 0) {
+			relativeDegrees = 360 - (degrees.abs().longValue() % 360);
+		}
 		double position;
 
 		if (relativeDegrees >= 0 && relativeDegrees <= 90) {

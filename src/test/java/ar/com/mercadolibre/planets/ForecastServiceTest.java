@@ -5,8 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
+import ar.com.mercadolibre.planets.domain.Betasoide;
+import ar.com.mercadolibre.planets.domain.Ferengi;
 import ar.com.mercadolibre.planets.domain.Planet;
+import ar.com.mercadolibre.planets.domain.Vulcano;
 import ar.com.mercadolibre.planets.service.ForecastService;
 import ar.com.mercadolibre.planets.service.ForecastService.Weather;
 
@@ -48,6 +52,13 @@ public class ForecastServiceTest {
 		assertEquals(Weather.OPTIMAL, forecast);
 	}
 
+	@Test
+	public void asaas() {
+		Ferengi p1 = new Ferengi(1);
+		Vulcano p2 = new Vulcano(1);
+		Betasoide p3 = new Betasoide(1);
+		Weather weather =  new ForecastService().forecast(p1, p2, p3);
+	}
 	class DummyPlanet extends Planet {
 		
 		private BigDecimal dummyX;
