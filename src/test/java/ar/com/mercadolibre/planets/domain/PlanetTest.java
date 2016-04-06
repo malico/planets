@@ -1,4 +1,4 @@
-package ar.com.mercadolibre.planets;
+package ar.com.mercadolibre.planets.domain;
 
 import java.math.BigDecimal;
 
