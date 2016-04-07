@@ -1,11 +1,24 @@
 package ar.com.mercadolibre.planets.domain;
 
+/**
+ * A forecasts summary.
+ * @author malico
+ */
 public class ForecastSummary {
 
+	/** The number of clear days. */
 	private long clear;
+	
+	/** The number of rainy days. */
 	private long rain;
+	
+	/** The number of drought days. */
 	private long drought;
+	
+	/** The number of optimal days. */
 	private long optimal;
+	
+	/** The day of maximum rain. */
 	private long maxRainDay;
 
 	public ForecastSummary(long clearDays, long rainyDays, long droughtDays,

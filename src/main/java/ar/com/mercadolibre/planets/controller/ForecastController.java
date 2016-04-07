@@ -9,25 +9,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.mercadolibre.planets.domain.ForecastSummary;
-import ar.com.mercadolibre.planets.domain.WeatherRegistry;
+import ar.com.mercadolibre.planets.domain.Forecast;
 import ar.com.mercadolibre.planets.service.ForecastService;
 
+/**
+ * Controller to handle request.
+ * @author malico
+ */
 @RestController
 @RequestMapping("/")
 public class ForecastController {
 
+	/** The forecast service, never null.*/
 	@Autowired
 	private ForecastService service;
 
+	/**
+	 * Forecasts the weather for the given day.
+	 * @param day the day which the weather will be forecasted.
+	 * @return a JSON response with the forecast summary.
+	 */
 	@RequestMapping(value = { "/forecast/{day}" }, method = RequestMethod.GET)
-	public ResponseEntity<WeatherRegistry> forecast(@PathVariable("day") int day) {
+	public ResponseEntity<Forecast> forecast(@PathVariable("day") int day) {
 
-		WeatherRegistry registry = service.forecast(day);
-		return new ResponseEntity<WeatherRegistry>(registry, HttpStatus.OK);
+		Forecast registry = service.forecast(day);
+		return new ResponseEntity<Forecast>(registry, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = { "/run/{years}" }, method = RequestMethod.GET)
-	public ResponseEntity<ForecastSummary> runCron(
+	/**
+	 * Calculates the weather for the given number of years.
+	 * @param years the years which the weather will be forecasted.
+	 * @return a JSON response with the forecast summary.
+	 */
+	@RequestMapping(value = { "/calculate/{years}" }, method = RequestMethod.GET)
+	public ResponseEntity<ForecastSummary> calculateWeather(
 			@PathVariable("years") int years) {
 
 		int totalDays = years * 365;
@@ -35,7 +50,7 @@ public class ForecastController {
 			service.forecast(day);
 		}
 		return new ResponseEntity<ForecastSummary>(
-				service.summary(0, totalDays), HttpStatus.OK);
+				service.summary(1, totalDays), HttpStatus.OK);
 	}
 
 }

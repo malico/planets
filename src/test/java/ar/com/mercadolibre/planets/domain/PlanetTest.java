@@ -16,30 +16,26 @@ public class PlanetTest {
 	@Test
 	public void getXPositionForDay() {
 
-		Planet ferengi = new Ferengi();
+		Planet ferengi = Ferengi.getInstance();
 		BigDecimal radius = ferengi.getDistanceToSun();
 
-		assertEquals(ferengi.getXPositionForDay(0).doubleValue(), 0, DELTA);
-		assertEquals(ferengi.getXPositionForDay(90).doubleValue(),
-				radius.doubleValue(), DELTA);
-		assertEquals(ferengi.getXPositionForDay(180).doubleValue(), 0, DELTA);
-		assertEquals(ferengi.getXPositionForDay(270).doubleValue(),
-				radius.doubleValue() * -1, DELTA);
+		assertEquals(0, ferengi.move(0).getX().doubleValue(), DELTA);
+		assertEquals(radius.doubleValue(), ferengi.move(90).getX().doubleValue(), DELTA);
+		assertEquals(0, ferengi.move(180).getX().doubleValue(), DELTA);
+		assertEquals(radius.doubleValue() * -1, ferengi.move(270).getX().doubleValue(), DELTA);
 
 	}
 
 	@Test
 	public void getYPositionForDay() {
 
-		Planet ferengi = new Ferengi();
+		Planet ferengi = Ferengi.getInstance();
 		BigDecimal radius = ferengi.getDistanceToSun();
 
-		assertEquals(radius.doubleValue(), ferengi.getYPositionForDay(0)
-				.doubleValue(), DELTA);
-		assertEquals(0, ferengi.getYPositionForDay(90).doubleValue(), DELTA);
-		assertEquals(radius.doubleValue() * -1, ferengi.getYPositionForDay(180)
-				.doubleValue(), DELTA);
-		assertEquals(0, ferengi.getYPositionForDay(270).doubleValue(), DELTA);
+		assertEquals(radius.doubleValue(), ferengi.move(0).getY().doubleValue(), DELTA);
+		assertEquals(0, ferengi.move(90).getY().doubleValue(), DELTA);
+		assertEquals(radius.doubleValue() * -1, ferengi.move(180).getY().doubleValue(), DELTA);
+		assertEquals(0, ferengi.move(270).getY().doubleValue(), DELTA);
 
 	}
 }

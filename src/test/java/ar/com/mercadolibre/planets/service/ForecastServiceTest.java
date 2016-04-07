@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.Test;
 
 import ar.com.mercadolibre.planets.domain.Planet;
-import ar.com.mercadolibre.planets.service.ForecastService.Weather;
+import ar.com.mercadolibre.planets.domain.WeatherCondition;
 
 public class ForecastServiceTest {
 	
@@ -16,8 +16,8 @@ public class ForecastServiceTest {
 		DummyPlanet p1 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(1)));
 		DummyPlanet p2 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(-1)));
 		DummyPlanet p3 = new DummyPlanet(new BigDecimal(-1), (new BigDecimal(0)));
-		Weather forecast = new ForecastService().forecast(p1, p2, p3);
-		assertEquals(Weather.RAIN, forecast);
+		WeatherCondition forecast = new ForecastService().forecast(p1, p2, p3);
+		assertEquals(WeatherCondition.RAIN, forecast);
 	}
 	
 	@Test
@@ -25,8 +25,8 @@ public class ForecastServiceTest {
 		DummyPlanet p1 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(1)));
 		DummyPlanet p2 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(-1)));
 		DummyPlanet p3 = new DummyPlanet(new BigDecimal(2), (new BigDecimal(2)));
-		Weather forecast = new ForecastService().forecast(p1, p2, p3);
-		assertEquals(Weather.CLEAR, forecast);
+		WeatherCondition forecast = new ForecastService().forecast(p1, p2, p3);
+		assertEquals(WeatherCondition.CLEAR, forecast);
 	}
 	
 	@Test
@@ -34,8 +34,8 @@ public class ForecastServiceTest {
 		DummyPlanet p1 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(1)));
 		DummyPlanet p2 = new DummyPlanet(new BigDecimal(-1), (new BigDecimal(-1)));
 		DummyPlanet p3 = new DummyPlanet(new BigDecimal(-5), (new BigDecimal(-5)));
-		Weather forecast = new ForecastService().forecast(p1, p2, p3);
-		assertEquals(Weather.DROUGHT, forecast);
+		WeatherCondition forecast = new ForecastService().forecast(p1, p2, p3);
+		assertEquals(WeatherCondition.DROUGHT, forecast);
 	}
 	
 	@Test
@@ -43,8 +43,8 @@ public class ForecastServiceTest {
 		DummyPlanet p1 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(1)));
 		DummyPlanet p2 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(2)));
 		DummyPlanet p3 = new DummyPlanet(new BigDecimal(1), (new BigDecimal(-5)));
-		Weather forecast = new ForecastService().forecast(p1, p2, p3);
-		assertEquals(Weather.OPTIMAL, forecast);
+		WeatherCondition forecast = new ForecastService().forecast(p1, p2, p3);
+		assertEquals(WeatherCondition.OPTIMAL, forecast);
 	}
 	
 	class DummyPlanet extends Planet {

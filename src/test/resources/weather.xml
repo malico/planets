@@ -1,5 +1,5 @@
 <dataset>
-    <weather_registries id="1"
+    <forecasts id="1"
            day="1"
            ferengi_x="25"
            ferengi_y="14"
@@ -8,8 +8,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="15.986875"/>
-    <weather_registries id="2"
+           mm_rained="15.986875"/>
+    <forecasts id="2"
            day="2"
            ferengi_x="25"
            ferengi_y="14"
@@ -18,8 +18,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="33.986875"/>
-    <weather_registries id="3"
+           mm_rained="33.986875"/>
+    <forecasts id="3"
            day="3"
            ferengi_x="25"
            ferengi_y="14"
@@ -28,8 +28,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="1.986875"/> 
-    <weather_registries id="4"
+           mm_rained="1.986875"/> 
+    <forecasts id="4"
            day="4"
            ferengi_x="25"
            ferengi_y="14"
@@ -38,8 +38,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="65.986875"/> 
-    <weather_registries id="5"
+           mm_rained="65.986875"/> 
+    <forecasts id="5"
            day="5"
            ferengi_x="25"
            ferengi_y="14"
@@ -48,8 +48,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/> 
-    <weather_registries id="6"
+           mm_rained="5.986875"/> 
+    <forecasts id="6"
            day="6"
            ferengi_x="25"
            ferengi_y="14"
@@ -58,8 +58,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/> 
-    <weather_registries id="7"
+           mm_rained="0.986875"/> 
+    <forecasts id="7"
            day="7"
            ferengi_x="25"
            ferengi_y="14"
@@ -68,8 +68,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="RAIN"
-           distance="-25.986875"/> 
-    <weather_registries id="8"
+           mm_rained="5.986875"/> 
+    <forecasts id="8"
            day="8"
            ferengi_x="25"
            ferengi_y="14"
@@ -78,8 +78,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="DROUGHT"
-           distance="-25.986875"/> 
-    <weather_registries id="9"
+           mm_rained="0"/> 
+    <forecasts id="9"
            day="9"
            ferengi_x="25"
            ferengi_y="14"
@@ -88,8 +88,8 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="CLEAR"
-           distance="-25.986875"/> 
-    <weather_registries id="10"
+           mm_rained="0"/> 
+    <forecasts id="10"
            day="10"
            ferengi_x="25"
            ferengi_y="14"
@@ -98,5 +98,5 @@
            betasoide_x="42"
            betasoide_y="0"
            weather="CLEAR"
-           distance="-25.986875"/> 
+           mm_rained="0"/> 
 </dataset>

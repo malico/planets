@@ -16,27 +16,26 @@ import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import ar.com.mercadolibre.planets.configuration.HibernateTestConfiguration;
-import ar.com.mercadolibre.planets.service.ForecastService.Weather;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { HibernateTestConfiguration.class }, loader = AnnotationConfigWebContextLoader.class)
-public class WeatherRegistryRepositoryTest extends DatabaseTest {
+public class ForecastRepositoryTest extends DatabaseTest {
 
 	private static final double DELTA = 1e-8;
 
 	@Autowired
-	WeatherRegistryRepository repository;
+	ForecastRepository repository;
 
 	@Test
 	public void saveAndRetrieve() {
-		WeatherRegistry registry = new WeatherRegistry(1234,
+		Forecast registry = new Forecast(1234,
 				new BigDecimal(10), new BigDecimal(22), new BigDecimal(41),
 				new BigDecimal(6), new BigDecimal(74), new BigDecimal(0.8),
-				Weather.RAIN, new BigDecimal(1605.15));
+				WeatherCondition.RAIN, new BigDecimal(1605.15));
 		repository.save(registry);
 
-		WeatherRegistry byDay = repository.byDay(1234);
+		Forecast byDay = repository.byDay(1234);
 
 		assertNotNull(byDay);
 		assertEquals(1234, byDay.getDay());
@@ -47,18 +46,18 @@ public class WeatherRegistryRepositoryTest extends DatabaseTest {
 		assertEquals(74, byDay.getBetasoideX().doubleValue(), DELTA);
 		assertEquals(0.8, byDay.getBetasoideY().doubleValue(), DELTA);
 		assertEquals(1605.15, byDay.getPlanetsDistance().doubleValue(), DELTA);
-		assertEquals(Weather.RAIN, byDay.getCondition());
+		assertEquals(WeatherCondition.RAIN, byDay.getCondition());
 	}
 
 	@Test
 	public void getDaysWithCondition() {
 		// in InitialDB.xml are configured 7 rainy days, 2 sunny days, 1 drought
 		// and any optimal.
-		long rainyDays = repository.getDaysWithCondition(Weather.RAIN, 1, 10);
-		long droughtDays = repository.getDaysWithCondition(Weather.DROUGHT, 1,
+		long rainyDays = repository.getDaysWithCondition(WeatherCondition.RAIN, 1, 10);
+		long droughtDays = repository.getDaysWithCondition(WeatherCondition.DROUGHT, 1,
 				10);
-		long sunnyDays = repository.getDaysWithCondition(Weather.CLEAR, 1, 10);
-		long optimalDays = repository.getDaysWithCondition(Weather.OPTIMAL, 1,
+		long sunnyDays = repository.getDaysWithCondition(WeatherCondition.CLEAR, 1, 10);
+		long optimalDays = repository.getDaysWithCondition(WeatherCondition.OPTIMAL, 1,
 				10);
 		assertEquals(7, rainyDays);
 		assertEquals(1, droughtDays);
@@ -69,7 +68,7 @@ public class WeatherRegistryRepositoryTest extends DatabaseTest {
 	@Test
 	public void getMaximumRainDay() {
 		// in InitialDB.xml the max rains day is number 4.
-		WeatherRegistry maxRainyDay = repository.getMaximumRainDay(1, 10);
+		Forecast maxRainyDay = repository.getMaximumRainDay(1, 10);
 		assertEquals(4, maxRainyDay.getDay());
 	}
 

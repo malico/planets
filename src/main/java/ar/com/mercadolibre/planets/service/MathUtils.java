@@ -3,24 +3,39 @@ package ar.com.mercadolibre.planets.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/** 
+ * Class to support custom Math operations.
+ * @author malico
+ */
 public class MathUtils {
 
+	/** The BigDecimal precision used.*/
 	public static final int DECIMAL_PRESICION = 16;
 
+	/** A Infinitesimal delta to check equality. */
 	private static final double DELTA = 1e-8;
 
+	/**
+	 * Indicates if two numbers are equals.
+	 * @param x the first number.
+	 * @param y the second number
+	 * @return true if are equals, false otherwise.
+	 */
 	public static boolean equals(BigDecimal x, BigDecimal y) {
 		BigDecimal diff = x.subtract(y);
 		return (diff.abs().compareTo(new BigDecimal(DELTA)) < 1);
 	}
 
 	/**
-	 * Using Heron's formula
-	 * 
-	 * @param p1
-	 * @param p2
-	 * @param p3
-	 * @return
+	 * Calculates the triangle area using Heron's formula
+	 *
+	 * @param x1 the axis-x for the first triangle point.
+	 * @param y1 the axis-y for the first triangle point.
+	 * @param x2 the axis-x for the second triangle point.
+	 * @param y2 the axis-y for the second triangle point.
+	 * @param x3 the axis-x for the third triangle point.
+	 * @param y3 the axis-y for the third triangle point.
+	 * @return the triangle area.
 	 */
 	public static BigDecimal calculateTriangleArea(BigDecimal x1,
 			BigDecimal y1, BigDecimal x2, BigDecimal y2, BigDecimal x3,
@@ -38,6 +53,17 @@ public class MathUtils {
 				RoundingMode.HALF_UP);
 	}
 
+	/**
+	 * Calculates the triangle perimeter.
+	 *
+	 * @param x1 the axis-x for the first triangle point.
+	 * @param y1 the axis-y for the first triangle point.
+	 * @param x2 the axis-x for the second triangle point.
+	 * @param y2 the axis-y for the second triangle point.
+	 * @param x3 the axis-x for the third triangle point.
+	 * @param y3 the axis-y for the third triangle point.
+	 * @return the triangle perimeter.
+	 */
 	public static BigDecimal calculateTrianglePerimeter(BigDecimal x1,
 			BigDecimal y1, BigDecimal x2, BigDecimal y2, BigDecimal x3,
 			BigDecimal y3) {
@@ -57,7 +83,15 @@ public class MathUtils {
 		return perimeter;
 	}
 
-	public static BigDecimal distance(BigDecimal x1, BigDecimal y1,
+	/**
+	 * Gets the distance between two points.
+	 * @param x1 the axis-x for the first point.
+	 * @param y1 the axis-y for the first point.
+	 * @param x2 the axis-x for the second point.
+	 * @param y2 the axis-y for the second point.
+	 * @return the distance.
+	 */
+	private static BigDecimal distance(BigDecimal x1, BigDecimal y1,
 			BigDecimal x2, BigDecimal y2) {
 		BigDecimal deltaX = x2.subtract(x1);
 		BigDecimal deltaY = y2.subtract(y1);
