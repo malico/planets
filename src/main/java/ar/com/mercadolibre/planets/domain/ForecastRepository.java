@@ -1,8 +1,13 @@
 package ar.com.mercadolibre.planets.domain;
 
+import java.util.List;
+
 import org.apache.commons.lang3.Validate;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -54,23 +59,26 @@ public class ForecastRepository extends BaseRepository<Forecast, Long> {
 		return (long) criteria.uniqueResult();
 	}
 
+	
 	/**
-	 * Gets the day of maximum rain.
+	 * Gets the days of maximum rain.
 	 * @param fromDay the from day, must be greater than 0.
 	 * @param toDay the to day, must be greater than 0 and greater than fromDay.
 	 * @return the day which the day was the maximum.
 	 */
-	public Forecast getMaximumRainDay(int fromDay, int toDay) {
+	public List<Forecast> getMostRainyDays(int fromDay, int toDay) {
 		Validate.isTrue(fromDay > 0, "The day must be greater than 0.");
 		Validate.isTrue(toDay > 0, "The day must be greater than 0.");
 		Validate.isTrue(toDay >= fromDay, "The to day must be greater than the from date.");
-		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.ge("day", fromDay));
-		criteria.add(Restrictions.le("day", toDay));
-		criteria.add(Restrictions.eq("condition", WeatherCondition.RAIN));
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-	    criteria.addOrder(org.hibernate.criterion.Order.desc("mmRained"));
-	    criteria.setMaxResults(1);
-		return (Forecast) criteria.uniqueResult();
+		
+		Query maxMmQuery = getSession().createQuery(
+				"select ff.mmRained from Forecast ff order by mmRained desc");
+		maxMmQuery.setMaxResults(1);
+		Object result = maxMmQuery.uniqueResult();
+		
+		Query daysQuery = getSession().createQuery(
+		        "select f from Forecast f where f.mmRained = :max ");
+		daysQuery.setParameter("max", result);
+		return daysQuery.list();
 	}
 }

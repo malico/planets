@@ -1,8 +1,13 @@
 package ar.com.mercadolibre.planets.service;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +33,8 @@ public class ForecastService {
 	/** The weather registers repository.*/
 	@Autowired
 	private ForecastRepository repository;
+	
+	  private static final Logger LOG = getLogger(ForecastRepository.class);
 
 	/**
 	 * Predicts the weather for the given day.
@@ -35,11 +42,13 @@ public class ForecastService {
 	 * @return the Forecast result, never null.
 	 */
 	public Forecast forecast(final int day) {
-
+		
+		LOG.info("Starting forecast for day {}.", day);
 		Forecast result;
 
 		result = repository.byDay(day);
 		if (result != null) {
+			LOG.info("Leaving forecast for day {}. Found on Database", day);
 			return result;
 		}
 
@@ -61,6 +70,7 @@ public class ForecastService {
 		result = new Forecast(day, ferengi.getX(), ferengi.getY(), vulcano.getX(), vulcano.getY(),
 				betasoide.getX(), betasoide.getY(), weather, mmRained);
 		repository.save(result);
+		LOG.info("Leaving forecast for day {}. New forecast", day);
 		return result;
 	}
 
@@ -85,7 +95,7 @@ public class ForecastService {
 	 *            the last Planet, cannot be null.
 	 * @return a WeatherCondition, never null.
 	 */
-	public WeatherCondition forecast(final Planet p1, final Planet p2, final Planet p3) {
+	WeatherCondition forecast(final Planet p1, final Planet p2, final Planet p3) {
 		Validate.notNull(p1, "The first planet cannot be null.");
 		Validate.notNull(p2, "The second planet cannot be null.");
 		Validate.notNull(p3, "The third planet cannot be null.");
@@ -145,8 +155,12 @@ public class ForecastService {
 		long rainyDays = repository.getDaysWithCondition(WeatherCondition.RAIN, fromDay, toDay);
 		long droughtDays = repository.getDaysWithCondition(WeatherCondition.DROUGHT, fromDay, toDay);
 		long optimalDays = repository.getDaysWithCondition(WeatherCondition.OPTIMAL, fromDay, toDay);
-		Forecast maximumRainDay = repository.getMaximumRainDay(fromDay, toDay);
-		return new ForecastSummary(clearDays, rainyDays, droughtDays, optimalDays, maximumRainDay.getDay());
+		List<Forecast> maximumRainDays = repository.getMostRainyDays(fromDay, toDay);
+		List<Long> days = new ArrayList<>();
+		for (Forecast forecast : maximumRainDays) {
+			days.add(new Long(forecast.getDay()));
+		}
+		return new ForecastSummary(clearDays, rainyDays, droughtDays, optimalDays, days);
 	}
 
 }

@@ -1,5 +1,7 @@
 package ar.com.mercadolibre.planets.domain;
 
+import java.util.List;
+
 /**
  * A forecasts summary.
  * @author malico
@@ -18,16 +20,16 @@ public class ForecastSummary {
 	/** The number of optimal days. */
 	private long optimal;
 	
-	/** The day of maximum rain. */
-	private long maxRainDay;
+	/** The days of maximum rain. */
+	private List<Long> maxRainDays;
 
 	public ForecastSummary(long clearDays, long rainyDays, long droughtDays,
-			long optimalDays, long theMaxRainyDay) {
+			long optimalDays, List<Long> theMaxRainyDays) {
 		setClear(clearDays);
 		setRain(rainyDays);
 		setDrought(droughtDays);
 		setOptimal(optimalDays);
-		setMaxRainDay(theMaxRainyDay);
+		setMaxRainDay(theMaxRainyDays);
 	}
 
 	public long getClear() {
@@ -62,12 +64,12 @@ public class ForecastSummary {
 		this.optimal = optimal;
 	}
 
-	public long getMaxRainDay() {
-		return maxRainDay;
+	public List<Long> getMaxRainDays() {
+		return maxRainDays;
 	}
 
-	public void setMaxRainDay(long maxRainDay) {
-		this.maxRainDay = maxRainDay;
+	public void setMaxRainDay(List<Long> maxRainDays) {
+		this.maxRainDays = maxRainDays;
 	}
 
 }

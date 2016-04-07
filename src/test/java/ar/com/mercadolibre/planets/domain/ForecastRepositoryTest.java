@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
@@ -45,7 +46,7 @@ public class ForecastRepositoryTest extends DatabaseTest {
 		assertEquals(6, byDay.getVulcanoY().doubleValue(), DELTA);
 		assertEquals(74, byDay.getBetasoideX().doubleValue(), DELTA);
 		assertEquals(0.8, byDay.getBetasoideY().doubleValue(), DELTA);
-		assertEquals(1605.15, byDay.getPlanetsDistance().doubleValue(), DELTA);
+		assertEquals(1605.15, byDay.getMillimetersRaied().doubleValue(), DELTA);
 		assertEquals(WeatherCondition.RAIN, byDay.getCondition());
 	}
 
@@ -64,12 +65,14 @@ public class ForecastRepositoryTest extends DatabaseTest {
 		assertEquals(2, sunnyDays);
 		assertEquals(0, optimalDays);
 	}
-	
+
 	@Test
-	public void getMaximumRainDay() {
-		// in InitialDB.xml the max rains day is number 4.
-		Forecast maxRainyDay = repository.getMaximumRainDay(1, 10);
-		assertEquals(4, maxRainyDay.getDay());
+	public void getMostRainyDays() {
+		// in weather.xml the max rains day is number 4.
+		List<Forecast> maxRainyDay = repository.getMostRainyDays(1, 10);
+		assertEquals(1, maxRainyDay.size());
+		assertEquals(4, maxRainyDay.get(0).getDay());
+
 	}
 
 	@Override

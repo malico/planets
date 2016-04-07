@@ -98,85 +98,157 @@ public class Forecast {
 		setBetasoideX(betasoideXPos);
 		setBetasoideY(betasoideYPos);
 		setCondition(theWeahter);
-		setPlanetsDistance(millimetersRained);
+		setMillimetersRained(millimetersRained);
 	}
 
+	/**
+	 * Gets the forecasted day.
+	 * @return a day number
+	 */
 	public int getDay() {
 		return day;
 	}
 
+	/**
+	 * Sets the day to forecast.
+	 * @param theDay a day number.
+	 */
 	public void setDay(int theDay) {
 		this.day = theDay;
 	}
 
+	/**
+	 * Gets the axis-x position of Ferengi planet.
+	 * @return the position, in BigDecimal
+	 */
 	public BigDecimal getFerengiX() {
 		return ferengiX;
 	}
 
+	/**
+	 * Sets the axis-x position of Ferengi planet
+	 * @param theFerengiX the position to set, cannot be null.
+	 */
 	public void setFerengiX(BigDecimal theFerengiX) {
 		Validate.notNull(theFerengiX, "The position cannot be null");
 		this.ferengiX = theFerengiX;
 	}
 
+	/**
+	 * Gets the axis-y position of Ferengi planet.
+	 * @return the position, in BigDecimal
+	 */
 	public BigDecimal getFerengiY() {
 		return ferengiY;
 	}
 
+	/**
+	 * Sets the axis-y position of Ferengi planet
+	 * @param theFerengiY the position to set, cannot be null.
+	 */
 	public void setFerengiY(BigDecimal theFerengiY) {
 		Validate.notNull(theFerengiY, "The position cannot be null");
 		this.ferengiY = theFerengiY;
 	}
 
+	/**
+	 * Gets the axis-x position of Vulcano planet.
+	 * @return the position, in BigDecimal
+	 */
 	public BigDecimal getVulcanoX() {
 		return vulcanoX;
 	}
 
+	/**
+	 * Sets the axis-y position of Vulcano planet
+	 * @param theVulcanoX the position to set, cannot be null.
+	 */
 	public void setVulcanoX(BigDecimal theVulcanoX) {
 		Validate.notNull(theVulcanoX, "The position cannot be null");
 		this.vulcanoX = theVulcanoX;
 	}
 
+	/**
+	 * Gets the axis-y position of Vulcano planet.
+	 * @return the position, in BigDecimal
+	 */
 	public BigDecimal getVulcanoY() {
 		return vulcanoY;
 	}
 
+	/**
+	 * Sets the axis-y position of Vulcano planet
+	 * @param theVulcanoY the position to set, cannot be null.
+	 */
 	public void setVulcanoY(BigDecimal theVulcanoY) {
 		Validate.notNull(theVulcanoY, "The position cannot be null");
 		this.vulcanoY = theVulcanoY;
 	}
 
+	/**
+	 * Gets the axis-x position of Betasoide planet.
+	 * @return the position, in BigDecimal
+	 */
 	public BigDecimal getBetasoideX() {
 		return betasoideX;
 	}
-
+	
+	/**
+	 * Sets the axis-x position of Betasoide planet
+	 * @param theBetasoideX the position to set, cannot be null.
+	 */
 	public void setBetasoideX(BigDecimal theBetasoideX) {
 		Validate.notNull(theBetasoideX, "The position cannot be null");
 		this.betasoideX = theBetasoideX;
 	}
 
+	/**
+	 * Gets the axis-y position of Betasoide planet.
+	 * @return the position, in BigDecimal
+	 */
 	public BigDecimal getBetasoideY() {
 		return betasoideY;
 	}
 
+	/**
+	 * Sets the axis-y position of Ferengi planet
+	 * @param theBetasoideY the position to set, cannot be null.
+	 */
 	public void setBetasoideY(BigDecimal theBetasoideY) {
 		Validate.notNull(theBetasoideY, "The position cannot be null");
 		this.betasoideY = theBetasoideY;
 	}
 
+	/**
+	 * Gets the weather forecasted.
+	 * @return a Weather value.
+	 */
 	public WeatherCondition getCondition() {
 		return condition;
 	}
 
+	/**
+	 * Sets the weather forecasted.
+	 * @param theCondition the weather condition, cannot be null.
+	 */
 	public void setCondition(WeatherCondition theCondition) {
 		Validate.notNull(theCondition, "The condition cannot be null");
 		this.condition = theCondition;
 	}
 
-	public BigDecimal getPlanetsDistance() {
+	/**
+	 * Gets the rained millimeters.
+	 * @return the mm, in BigDecimal.
+	 */
+	public BigDecimal getMillimetersRaied() {
 		return mmRained;
 	}
 
-	public void setPlanetsDistance(BigDecimal theMillimeters) {
+	/**
+	 * Sets the rained millimeters.
+	 * @param theMillimeters the millimeters, cannot be null.
+	 */
+	public void setMillimetersRained(BigDecimal theMillimeters) {
 		Validate.notNull(theMillimeters, "The mm cannot be null");
 		this.mmRained = theMillimeters;
 	}
@@ -185,7 +257,4 @@ public class Forecast {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 }
